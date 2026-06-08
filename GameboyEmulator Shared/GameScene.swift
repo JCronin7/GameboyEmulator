@@ -22,7 +22,7 @@ class GameScene: SKScene {
         }
         
         // Set the scale mode to scale to fit the window
-        scene.scaleMode = .aspectFill
+        scene.scaleMode = .resizeFill
         
         return scene
     }
@@ -122,4 +122,3 @@ extension GameScene {
 
 }
 #endif
-
