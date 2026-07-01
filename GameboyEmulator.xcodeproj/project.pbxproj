@@ -18,6 +18,13 @@
 			remoteGlobalIDString = 1E9045EA2FC692D300DBDF0F;
 			remoteInfo = GameboyEmulatorCore;
 		};
+		1ED391452FF4D1B50043C92C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1E9045932FC6918400DBDF0F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1E9045EA2FC692D300DBDF0F;
+			remoteInfo = GameboyEmulatorCore;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -252,6 +259,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				1ED391462FF4D1B50043C92C /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				1E9045C22FC6918500DBDF0F /* GameboyEmulator macOS */,
@@ -440,6 +448,11 @@
 			isa = PBXTargetDependency;
 			target = 1E9045EA2FC692D300DBDF0F /* GameboyEmulatorCore */;
 			targetProxy = 1E9045F72FC692D300DBDF0F /* PBXContainerItemProxy */;
+		};
+		1ED391462FF4D1B50043C92C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1E9045EA2FC692D300DBDF0F /* GameboyEmulatorCore */;
+			targetProxy = 1ED391452FF4D1B50043C92C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

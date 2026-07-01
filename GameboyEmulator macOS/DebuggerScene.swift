@@ -1,4 +1,5 @@
 import SpriteKit
+import GameboyEmulatorCore
 
 class DebuggerScene: SKScene {
     // UI Panels
@@ -8,6 +9,9 @@ class DebuggerScene: SKScene {
     private var registerPanel: RegisterNode!
     private var gameWindowPanel: SKShapeNode!
     private var memoryPanel: MemoryNode!
+    
+    private let emulatorBridge = GameboyEmulatorBridge()
+    private var gameNode: GameNode!
     
     override func didMove(to view: SKView) {
         self.scaleMode = .resizeFill
@@ -115,14 +119,15 @@ class DebuggerScene: SKScene {
         // Log
         logPanel.addLog(.info, "[INFO] Debugger attached.")
         
-        // Game Window Placeholder (A classic green rectangle scaled to 160x144 proportions)
-        let gameScreenHeight = gameWindowPanel.frame.height * 0.6
-        let gameScreenWidth = gameScreenHeight * (160.0 / 144.0)
-        let gameScreen = SKShapeNode(rectOf: CGSize(width: gameScreenWidth, height: gameScreenHeight))
-        gameScreen.fillColor = SKColor(red: 0.61, green: 0.73, blue: 0.06, alpha: 1.0)
-        gameScreen.strokeColor = .clear
-        gameScreen.position = CGPoint(x: gameWindowPanel.frame.midX, y: gameWindowPanel.frame.midY - 10)
-        gameWindowPanel.addChild(gameScreen)
+        // Render the Game Node
+        gameNode = GameNode(emulatorBridge: emulatorBridge)
+        
+        let gameScreenHeight = gameWindowPanel.frame.height * 0.8
+        let scaleFactor = gameScreenHeight / 144.0
+        gameNode.setScale(scaleFactor)
+        
+        gameNode.position = CGPoint(x: gameWindowPanel.frame.midX, y: gameWindowPanel.frame.midY - 10)
+        gameWindowPanel.addChild(gameNode)
     }
     
     override func mouseDown(with event: NSEvent) {
@@ -132,5 +137,9 @@ class DebuggerScene: SKScene {
             consolePanel.isActive = false
             self.view?.window?.makeFirstResponder(self.view)
         }
+    }
+    
+    override func update(_ currentTime: TimeInterval) {
+        gameNode?.updateFrame()
     }
 }
